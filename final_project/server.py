@@ -23,9 +23,12 @@ def sent_detection():
     joy = response['joy']
     sadness = response['sadness']
     dominant_emotion = response['dominant_emotion']
-    if anger is None:
-        return 'Invalid input!  Try again...'
-    return F"For the given statement, the system response is 'anger': {anger}, 'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and 'sadness': {sadness}.  The dominant emotion is <b>{dominant_emotion}</b>"
+    part1 = f"For the given statement, the system response is 'anger': {anger},"
+    part2 = f"'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and "
+    part3 = f"'sadness': {sadness}.  The dominant emotion is <b>{dominant_emotion}</b>"
+    if dominant_emotion is None:
+        return 'Invalid text!  Please try again!'
+    return part1 + part2 + part3
 
 @app.route("/")
 def render_index_page():
@@ -34,7 +37,6 @@ def render_index_page():
     """
     return render_template('index.html')
 
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5066)
     #""" This functions executes the flask app and deploys it on localhost:5000 """
